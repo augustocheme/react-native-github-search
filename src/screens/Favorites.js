@@ -1,13 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 
-function Favorites({ screenProps }) {
-  console.log(screenProps.favorites);
+function Favorites({screenProps}) {
   return (
     <View style={styles.container}>
       <Text>Showing favorites</Text>
-      <ScrollView style={{ width: '80%', paddingTop: 20, paddingBottom: 20 }}>
+      <ScrollView style={{width: '80%', paddingTop: 20, paddingBottom: 20}}>
         {screenProps.favorites.map(favorite => (
           <View style={styles.box} key={favorite.id}>
             <Text>{favorite.name}</Text>
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: 30,
-    paddingBottom: 30
+    paddingBottom: 30,
   },
   box: {
     display: 'flex',
@@ -36,8 +35,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 20,
     padding: 15,
-    width: '100%'
-  }
+    width: '100%',
+  },
 });
 
 export default Favorites;

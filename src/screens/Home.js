@@ -1,19 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import {StyleSheet, Text, View, Button, TextInput} from 'react-native';
 import axios from 'axios';
 
-function Home({ navigation, screenProps }) {
+function Home({navigation, screenProps}) {
   const [searchValue, setSearchvalue] = React.useState('');
-
-  //   const githubSearch = React.useCallback(() => {
-  //     if (searchValue === '') {
-  //       console.log('Please fill the input');
-  //       return;
-  //     }
-  //     axios
-  //       .get(`https://api.github.com/users/${searchValue}/repos`)
-  //       .then(response => response.data.map(repo => console.log(repo.name)));
-  //   }, [searchValue]);
 
   const handleSubmit = React.useCallback(() => {
     if (searchValue === '') {
@@ -52,7 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   searchInput: {
     width: '80%',
@@ -60,8 +50,8 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     margin: 20,
-    paddingLeft: 15
-  }
+    paddingLeft: 15,
+  },
 });
 
 export default Home;
