@@ -24,7 +24,7 @@ export default class App extends React.Component {
       .catch(error => console.log(error));
   };
 
-  loadFavorites = () => {
+  getFavorites = () => {
     axios
       .get('http://localhost:3000/favorites')
       .then(response => {
@@ -33,8 +33,28 @@ export default class App extends React.Component {
       .catch(error => console.log(error));
   };
 
+  getFavoriteById = repoId => {
+    axios
+      .get(`http://localhost:3000/favorites/${repoId}`)
+      .catch(error => console.log(error));
+  };
+
+  addToFavorites = repo => {
+    axios
+      .post('http://localhost:3000/favorites', repo)
+      .catch(error => console.log(error))
+      .finally(this.getFavorites());
+  };
+
+  removeFromFavorites = repoId => {
+    axios
+      .delete(`http://localhost:3000/favorites/${repoId}`)
+      .catch(error => console.log(error))
+      .finally(this.getFavorites());
+  };
+
   componentDidMount() {
-    this.loadFavorites();
+    this.getFavorites();
   }
 
   render() {
@@ -43,8 +63,10 @@ export default class App extends React.Component {
         screenProps={{
           searchValue: this.state.searchValue,
           repos: this.state.repos,
-          searchRepos: this.searchRepos,
           favorites: this.state.favorites,
+          searchRepos: this.searchRepos,
+          addToFavorites: this.addToFavorites,
+          removeFromFavorites: this.removeFromFavorites,
         }}
       />
     );

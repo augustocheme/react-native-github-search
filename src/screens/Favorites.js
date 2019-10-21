@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableHighlight, Alert} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 function Favorites({screenProps}) {
@@ -8,11 +8,31 @@ function Favorites({screenProps}) {
       <Text>Showing favorites</Text>
       <ScrollView style={{width: '80%', paddingTop: 20, paddingBottom: 20}}>
         {screenProps.favorites.map(favorite => (
-          <View style={styles.box} key={favorite.id}>
-            <Text>{favorite.name}</Text>
-            <Text>Stars: {favorite.stargazers_count}</Text>
-            <Text>Forks: {favorite.forks_count}</Text>
-          </View>
+          <TouchableHighlight
+            onPress={() =>
+              Alert.alert(
+                'Favorites',
+                `Are you sure you want to remove ${favorite.name} from your favorites?`,
+                [
+                  {
+                    text: 'Cancel',
+                  },
+                  {
+                    text: 'OK',
+                    onPress: () => {
+                      screenProps.removeFromFavorites(favorite.id);
+                    },
+                  },
+                ],
+              )
+            }
+            key={favorite.id}>
+            <View style={styles.box} key={favorite.id}>
+              <Text>{favorite.name}</Text>
+              <Text>Stars: {favorite.stargazers_count}</Text>
+              <Text>Forks: {favorite.forks_count}</Text>
+            </View>
+          </TouchableHighlight>
         ))}
       </ScrollView>
     </View>
